@@ -1,0 +1,30 @@
+[Unit]
+Description=minprice - Radix token price service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=minprice
+Group=minprice
+WorkingDirectory=/opt/minprice
+EnvironmentFile=/etc/minprice.env
+ExecStart=/usr/bin/python3 -u /opt/minprice/minprice.py
+Restart=always
+RestartSec=5
+
+# resource limits
+MemoryMax=96M
+CPUQuota=25%
+Nice=5
+
+# hardening
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+ReadWritePaths=/var/lib/minprice
+StateDirectory=minprice
+
+[Install]
+WantedBy=multi-user.target

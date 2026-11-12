@@ -1,0 +1,12 @@
+# runtime data
+*.db
+*.db-wal
+*.db-shm
+ 
+# local config with secrets (commit only minprice.env.example)
+minprice.env
+ 
+# liquidity.py output
+tokens.pruned.json
+ 
+__pycache__/
